@@ -190,17 +190,6 @@ document.onkeydown = function (e) {
     }
 }
 
-// Start of Tawk.to Live Chat
-var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-(function () {
-    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/60df10bf7f4b000ac03ab6a8/1f9jlirg6';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
-})();
-// End of Tawk.to Live Chat
 
 
 /* ===== SCROLL REVEAL ANIMATION ===== */
@@ -236,11 +225,12 @@ srtop.reveal('.about .content .resumebtn', { delay: 200 });
 srtop.reveal('.skills .container', { interval: 200 });
 srtop.reveal('.skills .container .bar', { delay: 400 });
 
+
 /* SCROLL EDUCATION */
 srtop.reveal('.education .box', { interval: 200 });
 
 /* SCROLL PROJECTS */
-srtop.reveal('.work .box', { interval: 200 });
+srtop.reveal('.work .card', { interval: 200 });
 
 /* SCROLL EXPERIENCE */
 srtop.reveal('.experience .timeline', { delay: 400 });
@@ -310,3 +300,104 @@ $(document).ready(function () {
     srtop.reveal('.certificates .box', { interval: 200 });
 
 });
+
+function toggleText(id, element) {
+    const desc = document.getElementById(id);
+    
+    if (desc.classList.contains('expanded')) {
+      // Saat menutup, ukur tinggi penuh dan animasikan ke tinggi terpotong
+      const fullHeight = desc.scrollHeight; // tinggi penuh saat terbuka
+      // Tetapkan tinggi saat ini agar transisi bisa terjadi
+      desc.style.height = fullHeight + 'px';
+      // Paksa reflow agar browser menerapkan perubahan (flush the style)
+      desc.offsetHeight;
+      // Atur ke tinggi terpotong
+      desc.style.height = '3em';
+      desc.classList.remove('expanded');
+      element.innerHTML = 'Selengkapnya <i class="fas fa-arrow-right ml-1"></i>';
+    } else {
+      // Saat membuka, ukur tinggi penuh dan animasikan ke tinggi itu
+      const fullHeight = desc.scrollHeight;
+      // Tetapkan tinggi awal (3em) secara eksplisit
+      desc.style.height = '3em';
+      // Paksa reflow
+      desc.offsetHeight;
+      // Atur ke tinggi penuh
+      desc.style.height = fullHeight + 'px';
+      desc.classList.add('expanded');
+      element.innerHTML = 'Lebih Sedikit <i class="fas fa-arrow-up ml-1"></i>';
+      
+      // Setelah transisi selesai, ubah height ke auto agar responsive
+      desc.addEventListener('transitionend', function handler() {
+        // Pastikan kita berada dalam keadaan expanded
+        if (desc.classList.contains('expanded')) {
+          desc.style.height = 'auto';
+        }
+        desc.removeEventListener('transitionend', handler);
+      });
+    }
+  }
+
+  
+// Data keterampilan (soft skills & hard skills)
+const skillsData = [
+    { icon: "https://static-00.iconduck.com/assets.00/mikrotik-icon-1921x2048-1eai97he.png", name: "Mikrotik" },
+    { icon: "https://images.seeklogo.com/logo-png/3/1/cisco-logo-png_seeklogo-30674.png", name: "Cisco Packet Tracer" },
+    { icon: "https://seeklogo.com/images/A/autocad-logo-69326D7728-seeklogo.com.png", name: "AutoCad" },
+    { icon: "https://images.seeklogo.com/logo-png/37/2/microsoft-excel-logo-png_seeklogo-370278.png", name: "Excel" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/3094/3094939.png", name: "Time Management" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/10984/10984764.png", name: "Adapt quickly" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/10108/10108194.png", name: "Empathy" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/7966/7966954.png", name: "Decision-making" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/3281/3281311.png", name: "Teamwork" },
+  ];
+  
+document.addEventListener("DOMContentLoaded", function () {
+    // Ambil elemen container
+    let skillsContainer = document.getElementById("skillsContainer");
+    let skillHTML = "";
+
+    // Looping untuk menambahkan keterampilan ke dalam container
+    skillsData.forEach(skill => {
+        skillHTML += `
+        <div class="bar hidden">
+            <div class="info">
+                <img src="${skill.icon}" alt="${skill.name}" />
+                <span>${skill.name}</span>
+            </div>
+        </div>`;
+    });
+
+    // Masukkan skill ke dalam container
+    skillsContainer.innerHTML = skillHTML;
+
+    // === SCROLL REVEAL: Animasi muncul satu per satu saat di-scroll ===
+    ScrollReveal().reveal('.bar', {
+        interval: 200, // Jeda antar elemen (200ms)
+        origin: 'left', // Muncul dari kiri
+        distance: '50px',
+        duration: 800,
+        reset: true // Animasi diulang saat scroll kembali ke atas
+    });
+});
+
+
+  // Fungsi untuk menampilkan keterampilan
+  function showSkills() {
+    let skillsContainer = document.getElementById("skillsContainer");
+    let skillHTML = "";
+    skillsData.forEach(skill => {
+      skillHTML += `
+        <div class="bar">
+          <div class="info">
+            <img src="${skill.icon}" alt="${skill.name}" />
+            <span>${skill.name}</span>
+          </div>
+        </div>`;
+    });
+    skillsContainer.innerHTML = skillHTML;
+  }
+  
+  // Panggil fungsi saat halaman dimuat
+  document.addEventListener("DOMContentLoaded", showSkills);
+  
