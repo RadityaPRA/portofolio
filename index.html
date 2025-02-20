@@ -29,6 +29,7 @@
             <ul>
             <li><a class="active" href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#certificates">Certificates</a></li>
@@ -96,6 +97,19 @@
 
 
 
+<!-- Skills Section Starts -->
+<section class="skills" id="skills">
+  <h2 class="heading"><i class="fas fa-tools"></i> Daftar Keterampilan <span>(Skills)</span></h2>
+  <p>Soft skills &amp; hard skills yang dikuasai</p>
+  <div id="skillsContainer" class="container">
+    <!-- Data keterampilan akan dimuat oleh JavaScript -->
+  </div>
+</section>
+<!-- Skills Section Ends -->
+
+
+
+
 <!-- education section starts -->
 <section class="education" id="education">
 
@@ -131,52 +145,53 @@
 <!-- education section ends -->
 
 
+
 <!-- work project section starts -->
 <section class="work" id="work">
 
   <h2 class="heading"><i class="fas fa-laptop-code"></i> Projects <span>Made</span></h2>
 
   <div class="box-container">
-
-    <!-- Project 1 -->
-    <div class="box">
-      <div class="image">
-        <img src="./image/project1.jpeg" alt="Project 1" draggable="false">
+    <div class="container">
+      <div class="card-grid">
+          <!-- Card 1 -->
+          <div class="card">
+              <img src="./image/project1.jpeg" alt="VLAN Hotspot" class="card-img">
+              <div class="card-content">
+                  <h3 class="card-title">Instalasi Jaringan VLAN Hotspot</h2>
+                  <p class="card-text truncate-text" id="desc1">Projek Instalasi VLAN Hotspot ini mengimplementasikan teknologi VLAN untuk segmentasi trafik jaringan secara efisien. 
+                    Dengan topologi sederhana, perangkat yang digunakan meliputi Mikrotik sebagai router, switch manageable untuk distribusi trafik antar VLAN, 
+                    dan Access Point Ruijie sebagai pemancar sinyal hotspot. Hasilnya adalah jaringan yang terstruktur, aman, dan mudah dikelola.</p>
+                  <a class="card-link" onclick="toggleText('desc1', this)">Selengkapnya</a>
+              </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="card">
+              <img src="./image/project2.png" alt="Cisco Packet Tracer" class="card-img">
+              <div class="card-content">
+                  <h3 class="card-title">Router (DHCP Server) & Inter-VLAN</h2>
+                  <p class="card-text truncate-text" id="desc2">Projek ini bertujuan untuk mengonfigurasi router sebagai DHCP Server sekaligus menyediakan fungsi Inter-VLAN Routing. 
+                    Dalam topologi ini di Cisco Packet Tracer, setiap VLAN (misalnya VLAN 10, VLAN 20, dan VLAN 30) menerima alamat IP secara otomatis dari router, 
+                    sementara proses routing antar VLAN diatur melalui subinterface pada router. Hasilnya adalah jaringan yang tersegmentasi dengan baik namun tetap saling terhubung, 
+                    sehingga memudahkan manajemen dan meningkatkan efisiensi komunikasi data.</p>
+                  <a class="card-link" onclick="toggleText('desc2', this)">Selengkapnya</a>
+              </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="card">
+              <img src="https://storage.googleapis.com/a1aa/image/Uwc-pcD_Kn_87VkMQOojmg1Jo-3y3UaiQrkdVk4ljPY.jpg" alt="Buku Catatan screenshot" class="card-img">
+              <div class="card-content">
+                  <h3 class="card-title">Instalasi Jaringan sederhana</h2>
+                  <p class="card-text truncate-text" id="desc3">Projek Instalasi Jaringan Sederhana ini bertujuan untuk membangun jaringan lokal dengan topologi sederhana menggunakan router WRT300N, 
+                    switch, dan beberapa perangkat laptop, sehingga memungkinkan komunikasi antar perangkat dan akses internet yang stabil dan mudah dikelola.<br>
+                    Projek ini membangun jaringan sederhana menggunakan router WRT300N, switch, dan beberapa laptop, 
+                    dengan konfigurasi IP yang tepat agar setiap perangkat dapat saling berkomunikasi dan terhubung ke internet, sehingga tercipta jaringan yang stabil dan mudah dikelola.</p>
+                  <a class="card-link" onclick="toggleText('desc3', this)">Selengkapnya</a>
+              </div>
+          </div>
       </div>
-      <div class="content">
-        <h3>Vlan Hostpot</h3>
-        <p>Tujuan Proyek:
-          Mengatur Mikrotik agar dapat berfungsi optimal dengan konfigurasi NAT dan bisa diakses secara remote melalui VPN, 
-          sekaligus mempersiapkan konfigurasi VLAN di tahap berikutnya.
-        </p>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="box">
-      <div class="image">
-        <img src="./image/project2.png" alt="Project 2" draggable="false">
-      </div>
-      <div class="content">
-        <h3>Router (DHCP Server) & Inter-VLAN</h3>
-        <p> Router mendistribusikan alamat IP dinamis ke perangkat di tiga VLAN berbeda (VLAN 10, VLAN 20, dan VLAN 30) melalui DHCP. 
-          Komunikasi antar VLAN dilakukan menggunakan Inter-VLAN Routing dengan konfigurasi sub-interface pada router. Switch layer 2 terhubung ke router melalui port trunk, memungkinkan traffic VLAN melewati kedua switch dan router. 
-          Topologi ini memungkinkan perangkat di VLAN berbeda untuk saling berkomunikasi melalui router.</p>
-      </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="box">
-      <div class="image">
-        <img src="./image/project3.png" alt="Project 3" draggable="false">
-      </div>
-      <div class="content">
-        <h3>Menyambung kabel Fiber Optik</h3>
-        <p>Gambar ini menunjukkan hasil penyambungan kabel fiber optik menggunakan fucion splicer. Nilai LOSS: 0.02 dB menandakan kerugian sinyal yang sangat rendah, menunjukkan kualitas sambungan yang baik. Grafik pada layar menampilkan titik penyambungan serat optik (di tengah) dengan garis lurus yang stabil di kedua sisi, menandakan serat telah disejajarkan dengan sempurna.
-           Nilai L: 2.6 dan R: 2.2 menunjukkan panjang atau parameter serat optik yang terukur selama proses penyambungan.</p>
-      </div>
-    </div>
-
+  </div>
+  
 
 </section>
 <!-- work project section ends -->
@@ -243,7 +258,7 @@
         <img src="./image/Excel.jpg" alt="Certificate 6" draggable="false">
       </div>
       <div class="content">
-        <h3>Introduction to MS Excel</h3>
+        <h3>Introduction to Cyber Security and Soft Skill in The Digital Era</h3>
       </div>
     </div>
   </div>
