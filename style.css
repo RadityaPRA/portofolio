@@ -582,6 +582,7 @@ header .navbar ul li a:hover {
   text-align: center;
 }
 
+
 .skills h2 {
   color:rgb(255, 230, 0);
   margin-bottom: 1rem;
@@ -648,20 +649,26 @@ header .navbar ul li a:hover {
 }
 
 
-/* General Styles */
+/* Global Reset & Scroll Fix */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Pastikan tidak ada scroll horizontal yang tidak diinginkan */
+}
 
+/* General Styles */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Card Grid: Set align-items ke start agar tiap card punya tinggi sendiri */
+/* Card Grid: Responsif dan tiap card berdiri sendiri */
 .card-grid {
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(3, 1fr);
-  align-items: start; /* Ubah dari stretch ke start */
+  align-items: start; /* Setiap card menyesuaikan tinggi kontennya sendiri */
 }
 
 /* Card Styles */
@@ -672,6 +679,7 @@ header .navbar ul li a:hover {
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
   overflow: hidden;
   transition: border-color 0.3s ease, border-width 0.3s ease;
+  min-height: 400px;  /* Tinggi dasar agar border kartu sejajar di laptop */
 }
 
 .card:hover {
@@ -681,14 +689,14 @@ header .navbar ul li a:hover {
 
 .card-img {
   width: 100%;
-  height: 200px;
-  transition: transform 0.1s ease;
+  height: auto;
+  max-height: 200px; /* Batasi tinggi gambar agar tidak memaksa overflow */
   object-fit: cover;
+  transition: transform 0.1s ease;
 }
 
 .card-content {
   padding: 15px;
-  /* Hapus flex-grow atau flex display di sini agar konten tidak memaksa ketinggian card */
 }
 
 .card-title {
@@ -703,11 +711,11 @@ header .navbar ul li a:hover {
   margin-bottom: 15px;
   line-height: 1.5;
   overflow: hidden;
-  height: 3em; /* Tinggi awal untuk keadaan terpotong (misalnya 2 baris) */
+  height: 3em; /* Kondisi terpotong untuk 2 baris */
   transition: height 0.5s ease, opacity 0.5s ease;
 }
 
-/* Saat teks diperluas, kita hapus batas tinggi dengan menggunakan class .expanded */
+/* Saat teks diperluas, hanya card tersebut yang tumbuh */
 .card-text.expanded {
   height: auto;
 }
@@ -724,12 +732,38 @@ header .navbar ul li a:hover {
   color: #ffffff;
 }
 
+/* RESPONSIVE DESIGN */
+
+/* Tablet: 2 kolom */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* HP: 1 kolom & penyesuaian padding */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .card-text {
+    font-size: 14px; /* Perbesar teks agar mudah dibaca */
+    /* Jika ingin tetap collapsed, tetapkan height seperti 3em; jika ingin full text, gunakan height: auto; */
+    height: 3em; /* atau gunakan auto jika diinginkan full text secara default */
+  }
+}
+
 
 /* certificate section start */
 
 .certificates {
   padding: 50px 15px;
-  background: linear-gradient(135deg, #4facfe 0%, #667eea 50%, #1e3061 100%);
+  background: linear-gradient(135deg, #b9c4ce 0%, #b3b9d3 50%, #ced1dc 100%);
   text-align: center;
   box-shadow: 0px -10px 20px rgba(255, 255, 255, 0.3); 
 }
@@ -1126,6 +1160,3 @@ form .button-area {
   top: calc(100% - 12rem);
 }
 /* scroll top ends */
-
-
-
